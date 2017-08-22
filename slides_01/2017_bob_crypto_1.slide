@@ -1,0 +1,378 @@
+6th BoB Crypto Session
+22 Aug, 2017
+
+고탁균
+hazyheyjude@gmail.com
+
+
+
+* 오늘 이야기할 내용
+
+- 고전 암호와 해독 접근 방법
+- 현대 암호 앞에 쪼금
+
+하지 않을 내용
+
+- 수학 (나도 잘 모름ㅋ)
+
+* 암호 용어
+
+암호학 (Cryptography)
+
+- 암호에 관한 학문
+
+암호 해독/분석학 (Cryptanalysis)
+
+- 암호 해독에 관한 학문
+
+암호'관련'학 (Cryptology) => Crypto
+
+- 암호와 해독에 관한 학문
+
+* 암호의 본질적 목적
+나만의 은밀한 비밀
+.image http://127.0.0.1:3999/public/resources/1.png
+
+* 암호의 본질적 목적
+또는 너랑 나랑의 은밀한 비밀
+
+- '있잖아, 이거 비밀인데...'
+.image http://127.0.0.1:3999/public/resources/2.jpg
+
+
+* 암호의 본질적 목적
+
+주목적
+
+- '이거 비밀이야' -> 기밀성 (Confidentiality)
+
+추가 목적
+
+- '성적표 위조하면 혼난다' -> 무결성 (Integrity)
+- '아 내가 걔 맞다니까요' -> 인증 (Authentication)
+- '증거가 여기있습니다' -> 부인방지 (Non-repudiation)
+
+* 들어가기에 앞서..
+
+암호 시스템
+
+.image https://www.tutorialspoint.com/cryptography/images/cryptosystem.jpg _ 500
+
+암호 시스템 처음이자 끝 && 지켜야 할 단 하나
+
+- "키 (Key)"
+
+
+* 암호의 발전
+고전 암호
+
+- 치환 암호
+- 전치 암호
+- 복합(치환+전치) 암호
+
+현대 암호
+
+- 일방향 암호
+- 대칭키 암호
+- 공개키 암호
+- 차세대 암호
+
+* 단순 치환 암호 (Mono-alphabetic cipher)
+Caesar cipher
+
+- 알파벳 수열을 회전(0~25)시켜 알파벳을 다른 알파벳으로 단순 치환
+.link https://inventwithpython.com/cipherwheel/
+
+- ROT13 : 알파벳 수열을 13번 회전 시킨 방식 
+.image https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/475px-ROT13_table_with_example.svg.png
+
+* 단순 치환 암호의 해독
+
+걍 전사 공격 (Brute-force)
+
+- 26번만 해보면 됨ㅋ
+.image http://file.instiz.net/data/file/20120809/a/5/f/a5fb811d518e0ffd3493684942058df5 _ 380
+
+* 치환테이블을 이용한 단순 치환 암호
+치환할 알파벳을 임의로 정한 후 치환
+.image http://news.chosun.com/site/data/img_dir/2007/02/14/2007021400824_4.jpg
+
+* 치환테이블을 이용한 단순 치환 암호의 해독
+전사 공격??
+
+- 알파벳 치환 테이블은 26!(403291461126605635584000000)개 존재함
+- 초당 10억개의 테이블을 검사한다고 가정하면, 약 120억년 정도...-_-;
+.image http://cfile222.uf.daum.net/image/246A704C524A37AB2A1939 _ 500
+
+* 빈도 분석 (Frequency analysis)
+언어(영미 영문장 기준)적 특성에 빠른 알파벳 출현 빈도를 이용한 방법
+
+- 1:1 치환 관계이기 때문에 암호문에 알파벳의 특성이 그대로 유지됨
+.image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/English_letter_frequency_%28frequency%29.svg/760px-English_letter_frequency_%28frequency%29.svg.png _ 350
+
+* 알파벳 출현 빈도
+Index of Coincidence (IoC)
+
+- 어떤 언어의 문장이 완전히 random한 알파벳 빈도를 사용한다면 임의의 두 글자가 서로 같을 확률 = 1/26 (약 0.0385)
+- 영어의 경우 이 확률은 약 0.0667
+- 평문 영문장의 IoC = 0.0667 / 0.0385 = 1.73
+- 1에 가까울 수록 random text의 특성, 1.73에 가까울 수록 평문의 특성을 가짐
+- 어떤 외계문장이 단순 치환 암호(또는 전치암호)인지 다중 치환 암호인지 모를때, IoC를 구해보면 추측이 가능함
+	1.73에 가깝다? 단순 치환(또는 전치) 암호
+	1에 가깝다? 다중 치환 암호
+.link http://www.thonky.com/kryptos/ic-calculator
+
+* 빈도 분석을 이용한 단순 치환 암호의 해독
+ml rdf bgpqr kmlsty mb rdf kmlrd mb tnpgj  rdf ktpifr rmwl mb kfulc gl wdgad rdf turdmp mb pmktlaf mb rdf pmqf wtq empl tnnftpfs rm ef gl tq nfpbfar t qrtrf mb pfvmjurgml tq gb rdf ducuflmrq dts huqr ktsf t qfamls jt pmadfjjf mb gr ktly agrgzflq qffglc rdf wmkfl bjyglc rmwtps rdf dgcd qrpffr jftvglc rdfgp adgjspfl apyglc tr rdf mnfl smmpq dtqrflfs rm sml rdf augptqq tls qunnmprglc rdfgp qmkfwdtr ulafprtgl amuptcf wgrd t kuqifr mp t ntprgqtl sgpfarfs rdfgp qrfnq rmwtps rdf dmqrfjpy mb rdf hmjjy kgjjfp efbmpf wdgad wtq ctrdfpfs glapftqglc fvfpy kglurf t amkntar cpmun vmagbfpmuq tls bujj mb aupgmqgry
+
+.link http://www.brianveitch.com/maze-runner/frequency-analysis/index.html
+
+
+* 다중 치환 암호 (Poly-alphabetic cipher)
+Vigenere cipher
+
+- 랜덤한 키를 이용하여 평문을 알파벳 수열을 회전시킨 테이블에 매핑된 문자로 치환
+- ABCED키를 적용한 APPLE의 비제네르 암호문?
+.image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vigen%C3%A8re_square_shading.svg/800px-Vigen%C3%A8re_square_shading.svg.png _ 300
+
+- 1:N 치환 관계이기 때문에 암호문에 알파벳의 특성이 사라짐 -> 빈도 분석 못함 ㅠㅠ
+
+* Vigenere cipher의 취약점
+
+키 주기
+
+- if len(암호문) > len(키): #키를 반복 => 즉, 키는 일정 주기로 반복됨
+
+- 만약 len(키) = 5 라면, table[키[0]] == table[키[5]]
+
+- 그렇다면, 키 주기가 n 일때 {암호문[i],암호문[i+n],암호문[i+2n],...}은 같은 치환테이블을 이용해 암호화 된 결과들
+
+- 치환테이블이 같다면 단순 치환 암호와 똑같음! => 빈도분석 가능!
+
+.image http://cfile27.uf.tistory.com/image/21554B47590AF2851294C3 _ 350
+
+
+* Vigenere cipher의 해독
+
+.caption <평문>
+.caption twohouseholdsbothalikeindignityinfairver
+.caption onawherewelayourscenefromancientgrudgebr
+.caption eaktonewmutinywherecivilbloodmakescivilh
+.caption andsuncleanfromforththefatalloinsofthese
+.caption twofoesapairofstarcrossdloverstaketheirl
+
+.caption ________________________________________________________________________________________________________________________
+
+.caption <암호문>
+.caption kkalclgqlccrefckvmpwbsurrzuzmhpwzjozfhif
+.caption fbmavvfqascoksiigoibvtdsarbomsehsviuuqff
+.caption vowxcesiqikwzckysdiqzjuppccaharyqwqzjupv
+.caption rbpwieqxioetdsawcdxvkvqjokoxpczbestkvqws
+.caption kkajcvgmtozfajgkodgffgehzfjqvgkowihysuvz
+
+* Vigenere cipher의 해독
+
+.caption <동일 문자열 탐색>
+.caption *(0)kka* lclgqlccrefckvmpwbsurrzuzmhpwzj *(34)ozf* hif
+.caption fbmavvfqascoksiigoibv *(61)tdsa* rbomsehsviuuqff
+.caption vowxcesiqikwzckysdi *(99)qzjup* pccaharyqw *(114)qzjup* v
+.caption rbpwieqxioe *(131)tdsa* wcdxv *(140)kvq* jokoxpczbest *(155)kvq* ws
+.caption *(160)kka* jcvgmt *(169)ozf* aj *(174)gko* dgffgehzfjqv *(189)gko* wihysuvz
+.caption ________________________________________________________________________________________________________________________
+.caption 출현 오프셋에서 반복되는 값
+.caption (0, 160), (34, 169), (61, 131), (99, 114), (140, 155), (174, 189)
+
+	160 = 2*2*2*2*2*5
+	135 = 3*3*3*5
+	70 = 2*5*7
+	15 = 3*5
+	...
+
+
+* Vigenere cipher의 해독
+
+이제부턴 빈도분석!
+
+1. 키주기로 문자 
+
+	암호문
+	PPQCAXQVEKGYBNKMAZUYBNGBALJONITSZMJYIMVRAGVOHTVRAUCTKSGDDWUOXITLAZUVAVVRAZCVKBQPIWPOU
+	키주기르 4라고 했을때
+	{PAEBABANZIAHAKDXAAAKIU}, {PXKNZNLIMMGTUSWIZVZBW}, {QQGKUGJTJVVVCGUTUVCQP}, ...
+
+2. 빈도분석을 통해 예상 키 구하기
+
+	최다빈도 문자 6개가 각 묶음에 몇 번 등장하는지...
+	'A' 'PAEBABANZIAHAKDXAAAKIU' => 2
+	'I' 'HSWTSTSFRASZSCVPSSSCAM' => 2
+	'N' 'CNRONONAMVNUNXQKNNNXVH' => 2
+	'W' 'TEIFEFERDMELEOHBEEEOMY' => 2
+	'X' 'SDHEDEDQCLDKDNGADDDNLX' => 2
+	(다른 묶음에서도 구하기)
+
+* Vigenere cipher의 해독
+
+3. 키 후보 문자를 대상으로해서 키 brute force!
+
+	A, I, N, W, X (5)
+	I, Z (2)
+	C (1)
+	K, N, R, V, Y (5)
+	=> 길이 4인 키는 총 50개 가능
+
+4. 가능한 키 조합
+
+	AICK	IICK	NICK	WICK	XICK
+	AICN	IICN	NICN	WICN	XICN
+	AICR	IICR	NICR	WICR	XICR
+	AICV	IICV	NICV	WICV	XICV
+	AICY	IICY	NICY	WICY	XICY
+	AZCK	IZCK	NZCK	WZCK	XZCK
+	AZCN	IZCN	NZCN	WZCN	XZCN
+	AZCR	IZCR	NZCR	WZCR	XZCR
+	AZCV	IZCV	NZCV	WZCV	XZCV
+	AZCY	IZCY	NZCY	WZCY	XZCY
+
+
+* Vigenere cipher의 해독
+
+- 반복되는 값이 적거나 없는 경우 키주기 찾기 => IoC를 이용
+
+	1. 가능한 모든 예상 주기(ex. 1~100)에 대해 같은 치환테이블이 적용된 문자 그룹으로 묶음
+		- 암호문이 bdtastxas 이고, 키주기가 3일때 문자 그룹은
+		- [b, a, x], [d, s, a], [t, t, s] 로 나뉨
+
+	2. 각 문자 그룹에 대해 IoC의 평균을 구함 (각 문자 그룹은 1:1 단순 치환 관계이기 때문)
+
+	3. IoC가 1.73에 가까워질때가 키 주기라고 생각할 수 있음
+
+	4. 키주기 구한다음은 위와 동일
+
+
+* Vigenere cipher의 키 찾기 다른 방법
+
+1. 키주기 단위로 묶은 각 문자 그룹에 대해 문자별 출현 빈도 그래프를 그림 (키주기 만큼의 그래프를 그림)
+2. 그래프의 envelope이 유사함을 확인 => 키 유추 가능
+3. Envelope을 하나씩 시프트하며 정렬하며 a, b, c, ...
+.image http://cfs9.tistory.com/upload_control/download.blog?fhandle=YmxvZzkzMTUzQGZzOS50aXN0b3J5LmNvbTovYXR0YWNoLzAvNi5wbmc%3D _ 300
+4. 차례로 a,b,c,... 번호을 붙이고,
+5. 각 그래프에 붙여진 번호를 읽으면 키를 얻을 수 있음
+
+-_- 뭔말이여...
+
+
+* 전치 암호 
+
+- 문자의 순서를 바꾸는 암호
+.image https://bpsecblog.files.wordpress.com/2016/08/eca084ecb998ec9594ed98b802.png?w=421&h=241
+
+- 원주 암호 (Columnar cipher)
+	KEY -> G E R M A N
+		   d e f e n d
+		   t h e e a s
+	       t w a l l o
+	       f t h e c a
+	       s t l e x x
+암호문 : dttfs ehwtt feahl eelee nalcx dsoax
+
+* Columnar cipher의 해독
+Sliding window
+
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	dttfsehwttfeahleeleenalcxdsoax
+	...
+
+Sliding window + 
+
+- digraph : 두 글자가 나오는 확률/빈도
+- trigraph : 세 글자가 나오는 확률/빈도
+
+* 전쟁 전후의 본격적인 암호 연구
+
+1차 세계 대전
+
+- 짐머맨 전보 : 코드북 암호 (육군 음어표 통신)
+
+.image http://konas.net/img_data/article/050823/050823_2301.jpg _ 300
+
+2차 세계 대전
+
+- Enigma : 로터 머신 암호
+- 나바호 인디언
+
+* 현대 암호로의 발전
+
+- Claude Shannon : 정보 이론의 아버지 & 현대 암호의 아버지
+
+.image https://media.newyorker.com/photos/5909765cc14b3c606c1089f4/master/w_727,c_limit/Roberts-Claude-Shannon.jpg _ 300
+
+.caption 오오 아버지...
+
+* 섀넌의 암호 시스템
+
+.image https://www.tutorialspoint.com/cryptography/images/cryptosystem.jpg _ 500
+
+* 깨지지 않는 암호?
+
+OTP (One-Time pad) = 음어표 한번 쓰고 교체 -_-
+
+.image https://jjalbox.com/_data/jjalboxthumb/2015/03/85_2730.jpg
+.caption 개빡쳐서 안됨
+
+=> 네트워킹 환경에서는 현실적으로 불가능
+왜?
+
+
+* 암호 시스템이 '무조건' 취약한 공격
+
+- 전사 공격
+
+.image http://127.0.0.1:3999/public/resources/warrior.png _ 250
+.caption 전사 너프점...ㅠ
+
+- 근데 1억년 ㅋ
+
+.image http://upload2.inven.co.kr/upload/2017/05/01/bbs/i15018228458.jpg _ 180
+.caption 개꿀 ㅋ
+
+* 계산적 안전성
+
+현대 암호의 '안전성' 기반
+
+- 이 암호 시스템에 대한 공격은 되게 오래 걸리기 때문에 (계산적으로) 안전하다
+
+암호 시스템의 취약성
+
+- 비교적 짧은 시간내에 해독되는 방법이 발견되면 이 암호는 취약하다
+
+즉, 다시 말하면
+
+- 완벽하게 안전한 암호는 없다 (OTP 빼고ㅠ)
+
+.image https://jjalbox.com/_data/jjalboxthumb/2015/03/85_2730.jpg _ 200
+
+* 계산적 안전성의 기반
+
+확산과 혼돈의 개념
+
+.image https://media.newyorker.com/photos/5909765cc14b3c606c1089f4/master/w_727,c_limit/Roberts-Claude-Shannon.jpg _ 200
+.caption 이것도 나야나 ㅋ
+
+
+* 다음 시간에
+
+- 해독 이론
+- 현대 암호 (대칭키, 공개키, 메시지 다이제스트 등등)
+
+* 과제
+	RSWBSTHTVQPGANWTWVPLUPFHUFTXZGQBLMJMLKLHAFSNXXIOSZLLHJITTHAYISOTRSJIUXUSJIKWPZRMIDNXMLPQLF
+	IBWWMOHQNIDOPHWVMBDRECZMXOFTLOHLKGZSVLRPMWMMTCBCAXJRSBGXYHIXDWKNEMEOXTILMFNPAOHQAMLLCWEKPR
+	KZQBZSOLOKWLELHSHQCGVHWKPFLLEWYKBPAHPMWBJHKSUIGGNAMFLMTYHFVGGVCWIDTXPVBODLZJQWFIKHMIVNLDLI
+	LYWSYJIWRSXPXEZKLIBEPTPHVVFHUSZZWETLMSEBHTSWQWWHWFRGVRVATINRDAKGDPCEUSLFZYIFEAILIVGDYAYSFK
+	XELWHLAPRWSBGXAEZRSTXFSXWEGJWOAQEDZBEWTENIFXNYOEAGEAVLZLOLXZKPGYBHKKILHLXBCFTTLCMWRHSXDMDM
+	AWOIWRBLMJMTKDEOMGGOSICZPLLWHSCRT

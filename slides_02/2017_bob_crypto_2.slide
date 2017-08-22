@@ -1,0 +1,81 @@
+6th BoB Crypto Session
+29 Aug, 2017
+
+고탁균
+hazyheyjude@gmail.com
+
+
+
+* 시작하기 전에
+오늘 이야기할 내용
+
+- 현대 암호와 해독 접근 방법
+
+	대칭키 암호
+	공개키 암호
+	PKI
+	SSL
+
+하지 않을 내용
+
+- 수학 (나도 잘 모름ㅋ)
+
+* 내용
+
+대칭키 암호
+블록 암호
+페이스텔 네트워크
+DES
+3DES
+SPN
+AES
+블록 암호 모드
+스트림 암호
+동기식 스트림 암호
+비동기식 스트림 암호
+블록 암호와의 차이점
+결정적 문제 = 키 교환/분배
+비대칭키 암호
+디피헬만과 RSA
+왜? 어째서 안전한가?
+P = NP ?
+소인수 분해 문제
+RSA
+이산 대수 문제
+디피헬만
+타원곡선
+메시지 다이제스
+SSL
+HTTPS
+
+
+
+
+----------------------------------------
+
+
+해독 이론의 정립 
+
+- COA
+- CPA
+- CCA
+- KPA
+- 원문선택
+
+해독 방법 이론
+
+- brute force
+- pollard's rho algorithm
+- Time vs. space
+	mitm
+	time-space trade off
+	slide attack
+	multi-table approach
+	distinguished endpoint
+- rainbow table
+- birthday paradox
+- slide attack
+- linear cryptanalysis
+- differential cryptanalysis
+
+

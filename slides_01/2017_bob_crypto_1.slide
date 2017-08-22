@@ -151,6 +151,22 @@ Vigenere cipher
 
 .image http://cfile27.uf.tistory.com/image/21554B47590AF2851294C3 _ 350
 
+* 과연...?
+
+.image http://cfile22.uf.tistory.com/image/26489F345596310E39E76C _ 150
+
+같은 치환테이블을 이용한 문자를 묶은 결과 역시 판독하기 어려운 문장이 됨
+
+- 키주기 3일때,
+
+	{A,A,A,A}
+	{T,C,T,W}
+	{T,K,D,N}
+
+	=> ATTACK AT DAWN
+
+- 때문에, 키를 먼저 구하는 편이 더 나음
+
 
 * Vigenere cipher의 해독
 
@@ -193,12 +209,18 @@ Vigenere cipher
 
 이제부턴 빈도분석!
 
-1. 키주기로 문자 
+1. 키주기로 문자 묶기
 
 	암호문
 	PPQCAXQVEKGYBNKMAZUYBNGBALJONITSZMJYIMVRAGVOHTVRAUCTKSGDDWUOXITLAZUVAVVRAZCVKBQPIWPOU
-	키주기르 4라고 했을때
+	키주기를 4라고 했을때
 	{PAEBABANZIAHAKDXAAAKIU}, {PXKNZNLIMMGTUSWIZVZBW}, {QQGKUGJTJVVVCGUTUVCQP}, ...
+
+	이중 첫번째 묶음인 {PAEBABANZIAHAKDXAAAKIU}에 대해 비제네르 치환
+
+.image http://127.0.0.1:3999/public/resources/vigenere_frequency.png _ 300
+
+* Vigenere cipher의 해독
 
 2. 빈도분석을 통해 예상 키 구하기
 
@@ -208,9 +230,8 @@ Vigenere cipher
 	'N' 'CNRONONAMVNUNXQKNNNXVH' => 2
 	'W' 'TEIFEFERDMELEOHBEEEOMY' => 2
 	'X' 'SDHEDEDQCLDKDNGADDDNLX' => 2
-	(다른 묶음에서도 구하기)
 
-* Vigenere cipher의 해독
+	(다른 묶음에서도 구하기)
 
 3. 키 후보 문자를 대상으로해서 키 brute force!
 
@@ -219,6 +240,8 @@ Vigenere cipher
 	C (1)
 	K, N, R, V, Y (5)
 	=> 길이 4인 키는 총 50개 가능
+
+* Vigenere cipher의 해독
 
 4. 가능한 키 조합
 
@@ -233,10 +256,9 @@ Vigenere cipher
 	AZCV	IZCV	NZCV	WZCV	XZCV
 	AZCY	IZCY	NZCY	WZCY	XZCY
 
-
 * Vigenere cipher의 해독
 
-- 반복되는 값이 적거나 없는 경우 키주기 찾기 => IoC를 이용
+반복되는 값이 적거나 없는 경우 키주기 찾기 => IoC를 이용
 
 	1. 가능한 모든 예상 주기(ex. 1~100)에 대해 같은 치환테이블이 적용된 문자 그룹으로 묶음
 		- 암호문이 bdtastxas 이고, 키주기가 3일때 문자 그룹은
@@ -260,13 +282,12 @@ Vigenere cipher
 
 -_- 뭔말이여...
 
-
 * 전치 암호 
 
-- 문자의 순서를 바꾸는 암호
-.image https://bpsecblog.files.wordpress.com/2016/08/eca084ecb998ec9594ed98b802.png?w=421&h=241
+문자의 순서를 바꾸는 암호
 
 - 원주 암호 (Columnar cipher)
+.image https://bpsecblog.files.wordpress.com/2016/08/eca084ecb998ec9594ed98b802.png?w=421&h=241
 	KEY -> G E R M A N
 		   d e f e n d
 		   t h e e a s

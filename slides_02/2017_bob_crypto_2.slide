@@ -6,6 +6,7 @@ hazyheyjude@gmail.com
 
 
 
+
 * 시작하기 전에
 오늘 이야기할 내용
 
@@ -15,25 +16,215 @@ hazyheyjude@gmail.com
 	공개키 암호
 	PKI
 	SSL
+	암호 해독 이론
 
 하지 않을 내용
 
 - 수학 (나도 잘 모름ㅋ)
 
+
+
+
+* 현대 암호 분류
+
+대칭키 암호 (= 비밀키 암호, 관용 암호)
+
+- 블록 암호
+- 스트림 암호
+
+공개키 암호 (= 비대칭키 암호)
+
+- 소인수분해 기반
+- 이산대수 기반
+
+메시지 다이제스트 (= 해시)
+
+
+
+
+* 현대 암호 해독 분류
+
+Ciphertext Only Attack (COA)
+
+Chosen Plaintext Attack (CPA)
+
+Chosen Ciphertext Attack (CCA)
+
+Known Plaintext Attack (KPA)
+
+
+
+
+* 블록 암호의 설계
+
+확산과 혼돈
+
+- 현대 블록 암호의 근간 원칙
+- 갓섀넌이 제시함
+- 암호 알고리즘의 통계적 분석을 어렵게 함
+
+혼돈(Confusion)
+- 암호 알고리즘의 입력 중 평문을 1비트 바꿨을 때, 암호문의 출력은 예측 불가해야 함
+- ex) 0x0001을 암호화 한 값이 0x0002를 암호화 한 값과 n만큼 차이가 나더라...
+
+
+확산(Diffusion)
+
+- 평문 1비트 변경이, 출력되는 암호문의 여러 비트에 영향을 줘야 함
+- ex) 0x0000을 암호화 한 값과 0x0010을 암호화 한 값이 1비트만 다르더라...
+
+
+* 새로운 데이터 암호에 대한 필요성
+
+클린 앤 클리어
+
+.image http://www.beautyhankook.com/news/photo/201302/6371_18466_517.jpg _ 200
+.caption 깨끗하게 맑게 자신있게~! -_-;
+
+입찰 방식의 공모
+
+- 미 NSA는 안전하고 강력한 암호를 위해 클린하고 클리어한 공모로 모집함
+.image http://cfile22.uf.tistory.com/image/26489F345596310E39E76C _ 100
+
+
+* 데이터 암호 표준 (Data Encryption Standard)
+
+DES
+
+- IBM의 Feistel이 고안한 Lucifer 암호 기반
+- 최초의 데이터 암호 표준으로 선정하고 DES라는 이름을 붙임
+
+Feistel 네트워크 방식
+
+- 단순한 회전을 여러번 반복한 구조
+
+.image http://alessiorolleri.wikidot.com/local--files/cifrario-feistel/feistel.png _ 250
+
+
+
+
+* DES의 암호화
+
+	평문을 64비트 단위 블록으로 쪼갬
+	쪼갠 블록을 다시 오른쪽 32비트(R0)와 왼쪽 32비트(L0)로 나눔
+	초기 64비트 키를 이용해 16개의 48비트 라운드 키(K0~K15)를 계산함
+
+	<1 라운드>
+	1. R0과 라운드 키 K0을 라운드 함수 F에 넣어 결과 R0'를 얻음
+	2. R0'와 L0을 xor해서 R1로 만듬
+	3. R0을 L1로 만듬
+
+	라운드 반복
+	...
+
+	<16 라운드>
+	1. R14와 라운드 키 K14를 라운드 함수 F에 넣어 결과 R14'를 얻음
+	2. R14'와 L14을 xor해서 R15를 만듬
+	3. R14를 최종R로 만듬
+	4. R15를 최종L로 만듬
+	
+	암호화된 블록 = 최종L + 최종R
+
+* DES의 암호화
+
+.image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Feistel_cipher_diagram_en.svg/511px-Feistel_cipher_diagram_en.svg.png _ 350
+
+* DES의 내부 동작
+
+키 스케줄링
+
+라운드 함수
+
+* DES의 취약점
+
+너무 작은 키 space
+
+- 실제 사용되는 키 데이터는 56비트
+- 1999년 1만대 분산 cracking한 결과 22시간만에 깨짐
+
+취약한 키 입력값의 발견
+
+- 취약키 4개, 준취약키 6쌍 발견
+
+* 3DES
+
+* SPN (Substitution-Permutation Network)
+
+
+
+
+
+
+
+
+
+* 스트림 암호
+
+동기식 스트림 암호
+
+- 키 스트림이 암호화할 데이터와 독립적으로 생성
+- 키 스트림을 미리 생성해 놓을 수 있음
+- RC4
+
+비동기식(자기 동기식) 스트림 암호
+
+- 난수 스트림이 암호화할 데이터에 의존적으로 생성
+- 다음 메시지 블록이 도착하기 전까지 다음 키 스트림을 미리 생성해 놓을 수 없음
+- 블록 암호의 CFB 모드
+
+블록 암호와 스트림 암호의 실제적 차이
+
+- 스트림 암호도 어찌됐건간에 블록 단위로 나뉘어 암/복호화 됨 -_-;
+- 암복호화 과정 중에 암호화할 데이터(평문)가 직접적으로 변조된 다음 키가 적용되느냐 아니냐
+
+
+
+
+* 동기식 스트림 암호
+RC4
+
+- Rivest Cipher (또는 Ron's Code) 4
+- 비권고 알고리즘
+- 동작
+
+	1. 키 스트림 생성
+	2. 평문/암호문과 xor
+	3. 끝ㅋ
+
+
+
+
+* RC4 키 스케줄링
+
+- 입력된 키(IV)를 이용해 256바이트 배열을 셔플하여 난수 스트림 생성
+- 난수 스트림을 이용해 필요한 만큼의 키 값을 연속해서 생성 => 키 스트림
+
+.image http://flylib.com/books/3/190/1/html/2/images/06fig09.jpg _ 500
+
+
+
+
+* 자기 동기식 스트림 암호
+CFB 모드
+
+- 안전한 스트림 암호라고 할 수 있음
+
+.image https://upload.wikimedia.org/wikipedia/commons/f/fd/Cfb_encryption.png _ 600
+
+
+
+
 * 내용
 
-대칭키 암호
-블록 암호
-페이스텔 네트워크
-DES
-3DES
+
 SPN
 AES
 블록 암호 모드
-스트림 암호
-동기식 스트림 암호
-비동기식 스트림 암호
-블록 암호와의 차이점
+블록 암호 패딩
+
+
+
+
 결정적 문제 = 키 교환/분배
 비대칭키 암호
 디피헬만과 RSA

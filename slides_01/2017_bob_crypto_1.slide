@@ -15,6 +15,8 @@ hazyheyjude@gmail.com
 
 - 수학 (나도 잘 모름ㅋ)
 
+	git clone https://github.com/hazyheyjude/bob_6th_crypto.git
+
 * 암호 용어
 
 암호학 (Cryptography)
@@ -125,7 +127,7 @@ Index of Coincidence (IoC)
 * 빈도 분석을 이용한 단순 치환 암호의 해독
 ml rdf bgpqr kmlsty mb rdf kmlrd mb tnpgj  rdf ktpifr rmwl mb kfulc gl wdgad rdf turdmp mb pmktlaf mb rdf pmqf wtq empl tnnftpfs rm ef gl tq nfpbfar t qrtrf mb pfvmjurgml tq gb rdf ducuflmrq dts huqr ktsf t qfamls jt pmadfjjf mb gr ktly agrgzflq qffglc rdf wmkfl bjyglc rmwtps rdf dgcd qrpffr jftvglc rdfgp adgjspfl apyglc tr rdf mnfl smmpq dtqrflfs rm sml rdf augptqq tls qunnmprglc rdfgp qmkfwdtr ulafprtgl amuptcf wgrd t kuqifr mp t ntprgqtl sgpfarfs rdfgp qrfnq rmwtps rdf dmqrfjpy mb rdf hmjjy kgjjfp efbmpf wdgad wtq ctrdfpfs glapftqglc fvfpy kglurf t amkntar cpmun vmagbfpmuq tls bujj mb aupgmqgry
 
-.link http://www.brianveitch.com/maze-runner/frequency-analysis/index.html
+.link 도
 
 
 * 다중 치환 암호 (Poly-alphabetic cipher)
@@ -168,7 +170,9 @@ Vigenere cipher
 - 때문에, 키를 먼저 구하는 편이 더 나음
 
 
-* Vigenere cipher의 해독
+* Vigenere cipher의 키 찾기
+
+우선 '키 주기'부터..
 
 .caption <평문>
 .caption twohouseholdsbothalikeindignityinfairver
@@ -186,7 +190,7 @@ Vigenere cipher
 .caption rbpwieqxioetdsawcdxvkvqjokoxpczbestkvqws
 .caption kkajcvgmtozfajgkodgffgehzfjqvgkowihysuvz
 
-* Vigenere cipher의 해독
+* Vigenere cipher의 키 찾기
 
 .caption <동일 문자열 탐색>
 .caption *(0)kka* lclgqlccrefckvmpwbsurrzuzmhpwzj *(34)ozf* hif
@@ -205,7 +209,7 @@ Vigenere cipher
 	...
 
 
-* Vigenere cipher의 해독
+* Vigenere cipher의 키 찾기
 
 이제부턴 빈도분석!
 
@@ -241,7 +245,7 @@ Vigenere cipher
 	K, N, R, V, Y (5)
 	=> 길이 4인 키는 총 50개 가능
 
-* Vigenere cipher의 해독
+* Vigenere cipher의 키 찾기
 
 4. 가능한 키 조합
 
@@ -256,6 +260,15 @@ Vigenere cipher
 	AZCV	IZCV	NZCV	WZCV	XZCV
 	AZCY	IZCY	NZCY	WZCY	XZCY
 
+* 삽질 시작 전에는?
+
+구글ㅋ
+
+.link https://goo.gl/6Ywgzk
+
+.image http://cfile25.uf.tistory.com/image/16669C455035B0AF08E6C8 _ 300
+.caption 무작정 삽질 금지
+
 * Vigenere cipher의 해독
 
 반복되는 값이 적거나 없는 경우 키주기 찾기 => IoC를 이용
@@ -269,6 +282,7 @@ Vigenere cipher
 	3. IoC가 1.73에 가까워질때가 키 주기라고 생각할 수 있음
 
 	4. 키주기 구한다음은 위와 동일
+
 
 
 * Vigenere cipher의 키 찾기 다른 방법
@@ -337,6 +351,7 @@ Sliding window +
 * 섀넌의 암호 시스템
 
 .image https://www.tutorialspoint.com/cryptography/images/cryptosystem.jpg _ 500
+.caption 오오 갓섀넌...
 
 * 깨지지 않는 암호?
 

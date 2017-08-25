@@ -59,19 +59,21 @@ Known Plaintext Attack (KPA)
 
 확산과 혼돈
 
-- 현대 블록 암호의 근간 원칙
-- 갓섀넌이 제시함
+- 갓섀넌이 제시한 현대 블록 암호의 근간 원칙
 - 암호 알고리즘의 통계적 분석을 어렵게 함
 
 혼돈(Confusion)
+
 - 암호 알고리즘의 입력 중 평문을 1비트 바꿨을 때, 암호문의 출력은 예측 불가해야 함
 - ex) 0x0001을 암호화 한 값이 0x0002를 암호화 한 값과 n만큼 차이가 나더라...
+- 보통 치환(substitution)으로 구현
 
 
 확산(Diffusion)
 
 - 평문 1비트 변경이, 출력되는 암호문의 여러 비트에 영향을 줘야 함
 - ex) 0x0000을 암호화 한 값과 0x0010을 암호화 한 값이 1비트만 다르더라...
+- 보통 순열(permutation)으로 구현
 
 
 * 새로운 데이터 암호에 대한 필요성
@@ -129,24 +131,90 @@ Feistel 네트워크 방식
 
 .image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Feistel_cipher_diagram_en.svg/511px-Feistel_cipher_diagram_en.svg.png _ 350
 
-* DES의 내부 동작
+* DES의 키 스케줄링
 
-키 스케줄링
+.image https://www.projectrhea.org/rhea/images/4/4e/KS3.png _ 350
 
-라운드 함수
+* DES의 라운드 함수
 
-* DES의 취약점
+.image https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Data_Encription_Standard_Flow_Diagram.svg/375px-Data_Encription_Standard_Flow_Diagram.svg.png
+.caption 32bits Block
 
-너무 작은 키 space
+* DES의 취약점 - Small key space
+
+키 사이즈가 작기 때문에 전사 공격에 취약함
 
 - 실제 사용되는 키 데이터는 56비트
-- 1999년 1만대 분산 cracking한 결과 22시간만에 깨짐
+- 1999년 DES 크랙 전용 시스템을 이용해 22시간만에 깨짐
 
-취약한 키 입력값의 발견
+.image https://upload.wikimedia.org/wikipedia/commons/b/bd/Board300.jpg _ 300
 
-- 취약키 4개, 준취약키 6쌍 발견
+* DES의 취약점 - 취약한 키 입력값
+
+- 취약키 4개 : E(E(p, k), k) = p
+
+	0x0101010101010101 -> 0x0000000000000000
+	0xFEFEFEFEFEFEFEFE -> 0x00000000FFFFFFFF
+	0xE0E0E0E0E0E0E0E0 -> 0xFFFFFFFF00000000
+	0x1F1F1F1F1F1F1F1F -> 0xFFFFFFFFFFFFFFFF
+
+	=> 동일한 라운드키만 생성됨
+
+- 준취약키 6쌍 : E(E(p, k1), k2) = P
+
+	k1 : 011F011F010E010E, k2 : 1F011F010E010E01
+	k1 : 01E001E001F101F1, k2 : E001E001F101F101
+	k1 : 01FE01FE01FE01FE, k2 : FE01FE01FE01FE01
+	k1 : 1FE01FE00EF10EF1, k2 : E01FE01FF10EF10E
+	k1 : 1FFE1FFE0EFE0EFE, k2 : FE1FFE1FFE0EFE0E
+	k1 : E0FEE0FEF1FEF1FE, k2 : FEE0FEE0FEF1FEF1
+
+	=> 2개의 라운드 키가 교차적으로 생성됨
 
 * 3DES
+
+단순한 키 확장 방식
+
+- 암호화 -> 복호화 -> 암호화 (EDE)
+
+2TDEA (2-key Triple Data Encryption Algorithm)
+
+- 2개의 키를 이용해 EDE
+
+3TDEA (3-key Triple Data Encryption Algorithm)
+
+- 3개의 키를 이용해 EDE
+
+DES라고 마냥 취약한건 아님!
+
+.image http://jjalbox.com/_data/jjalbox/2016/08/20160820_57b81f88a0b3b.jpg _ 200
+.caption 이래 봬도 권고임 ㅋ
+
+
+* 더 새로운 데이터 암호에 대한 필요성
+
+클린 앤 클리어??
+
+.image http://127.0.0.1:3999/public/resources/notclean.png _ 400
+.caption 글쎄ㅋ
+
+또 입찰 방식의 공모
+
+- 미 NSA는 '더' 안전하고 강력한 암호를 위해 클린하고 클리어한(것 같은) 공모로 모집함
+
+
+* AES (Advanced Encryption Standard)
+
+Rijndeal 알고리즘 당첨
+
+.image http://www.datamorgana.net/_/rsrc/1430940930629/gdata/jdvraes.jpg?height=200&width=320
+.caption Joan Daemen & Vincent Rijmen
+
+- 128/192/256비트 키를 유동적으로 사용
+- SP 네트워크 구조의 심플하고 빠르고 효율적인 동작
+- 어찌됐든 현존 가장 널리 쓰이는 암호
+
+
 
 * SPN (Substitution-Permutation Network)
 

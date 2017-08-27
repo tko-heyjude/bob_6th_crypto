@@ -56,7 +56,6 @@ Known Plaintext Attack (KPA)
 
 
 * 블록 암호의 설계
-
 확산과 혼돈
 
 - 갓섀넌이 제시한 현대 블록 암호의 근간 원칙
@@ -78,23 +77,24 @@ Known Plaintext Attack (KPA)
 
 * 새로운 데이터 암호에 대한 필요성
 
-클린 앤 클리어
+냉전시대 정보전에 너무 클린앤클리어해도 되나...?
+.image http://127.0.0.1:3999/public/resources/notclean.png _ 200
+.caption 노노!
 
-.image http://www.beautyhankook.com/news/photo/201302/6371_18466_517.jpg _ 200
-.caption 깨끗하게 맑게 자신있게~! -_-;
+암호 알고리즘의 투명성
 
-입찰 방식의 공모
+.image http://cfile27.uf.tistory.com/image/12170E3D513BE2D806F1A4 _ 300
+.caption 커코프 : "아놔..."
 
-- 미 NSA는 안전하고 강력한 암호를 위해 클린하고 클리어한 공모로 모집함
-.image http://cfile22.uf.tistory.com/image/26489F345596310E39E76C _ 100
+
 
 
 * 데이터 암호 표준 (Data Encryption Standard)
 
 DES
 
-- IBM의 Feistel이 고안한 Lucifer 암호 기반
-- 최초의 데이터 암호 표준으로 선정하고 DES라는 이름을 붙임
+- IBM의 Feistel이 고안한 Lucifer 암호 기반 (비밀리에 많은 수정이 이루어짐)
+- 최초의 데이터 암호 표준으로 선정하고 (수정하여) DES라는 이름을 붙임
 
 Feistel 네트워크 방식
 
@@ -106,10 +106,13 @@ Feistel 네트워크 방식
 
 
 * DES의 암호화
+초기 단계
 
 	평문을 64비트 단위 블록으로 쪼갬
 	쪼갠 블록을 다시 오른쪽 32비트(R0)와 왼쪽 32비트(L0)로 나눔
-	초기 64비트 키를 이용해 16개의 48비트 라운드 키(K0~K15)를 계산함
+	초기 64비트 키를 이용해 16개의 48비트 라운드 키(K0~K15)를 계산함 => "키 스케줄링"
+
+페이스텔 네트워크
 
 	<1 라운드>
 	1. R0과 라운드 키 K0을 라운드 함수 F에 넣어 결과 R0'를 얻음
@@ -127,9 +130,10 @@ Feistel 네트워크 방식
 	
 	암호화된 블록 = 최종L + 최종R
 
-* DES의 암호화
+* DES의 구조
 
-.image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Feistel_cipher_diagram_en.svg/511px-Feistel_cipher_diagram_en.svg.png _ 350
+.image http://127.0.0.1:3999/public/resources/des.png _ 458
+.caption 개복잡...ㅠ
 
 * DES의 키 스케줄링
 
@@ -145,11 +149,12 @@ Feistel 네트워크 방식
 키 사이즈가 작기 때문에 전사 공격에 취약함
 
 - 실제 사용되는 키 데이터는 56비트
-- 1999년 DES 크랙 전용 시스템을 이용해 22시간만에 깨짐
+- 1999년 EFF(Electronic Frotier Foundation)는 Deep Crack이라는 머신을 이용해 22시간만에 크랙 성공
 
-.image https://upload.wikimedia.org/wikipedia/commons/b/bd/Board300.jpg _ 300
+.image http://www.oocities.org/eoinward/images/Image10.jpg _ 400
+.caption 총 $260,000 개꿀ㅋ
 
-* DES의 취약점 - 취약한 키 입력값
+* DES의 취약점 - 취약한 키 스케줄 알고리즘
 
 - 취약키 4개 : E(E(p, k), k) = p
 
@@ -193,42 +198,96 @@ DES라고 마냥 취약한건 아님!
 
 * 더 새로운 데이터 암호에 대한 필요성
 
-클린 앤 클리어??
+클린 앤 클리어
 
-.image http://127.0.0.1:3999/public/resources/notclean.png _ 400
-.caption 글쎄ㅋ
+.image http://www.beautyhankook.com/news/photo/201302/6371_18466_517.jpg _ 200
+.caption 깨끗하게 맑게 자신있게~! -_-;
 
-또 입찰 방식의 공모
+입찰 방식의 공모
 
 - 미 NSA는 '더' 안전하고 강력한 암호를 위해 클린하고 클리어한(것 같은) 공모로 모집함
+.image http://cfile22.uf.tistory.com/image/26489F345596310E39E76C _ 100
 
 
-* AES (Advanced Encryption Standard)
 
-Rijndeal 알고리즘 당첨
+* Rijndeal 알고리즘
+
+AES로 선정된 벨기에산 암호
 
 .image http://www.datamorgana.net/_/rsrc/1430940930629/gdata/jdvraes.jpg?height=200&width=320
 .caption Joan Daemen & Vincent Rijmen
 
 - 128/192/256비트 키를 유동적으로 사용
-- SP 네트워크 구조의 심플하고 빠르고 효율적인 동작
-- 어찌됐든 현존 가장 널리 쓰이는 암호
+- SP(Substitution-Permutation) 네트워크 구조의 심플하고 빠르고 효율적인 동작
+- 어찌됐든 현재 가장 널리 쓰이는 암호
+
+* AES 
+
+SPN (Substitution-Permutation Network)
+
+	128/192/256비트 블록을..
+	128/192/256비트 키로..
+	4가지 작업을 반복해서.. (각 작업은 역산 가능한 연산)
+	10/12/14 라운드 수행
+
+.image https://i.stack.imgur.com/SnHH2.png _ 400
+
+* SubBytes
+
+.image http://127.0.0.1:3999/public/resources/subbytes.png
+
+* ShiftRows
+
+.image http://127.0.0.1:3999/public/resources/shiftrows.png
+
+* MixColumns
+
+.image http://127.0.0.1:3999/public/resources/mixcolumns.png
+
+* AddRoundKey
+
+.image http://127.0.0.1:3999/public/resources/addroundkey.png
+
+* 키 스케줄링 - RotWord
+
+.image http://127.0.0.1:3999/public/resources/key_rotword.png
+
+* 키 스케줄링 - SubBytes
+
+.image http://127.0.0.1:3999/public/resources/key_subbytes.png
+
+* 키 스케줄링 - RoundConstant
+
+.image http://127.0.0.1:3999/public/resources/key_rcon.png
+
+* 완성된 라운드 키
+
+.image http://127.0.0.1:3999/public/resources/key_roundkey.png
+
+* AES의 단 하나의 장점
+
+매우 빠름
+
+- 현대 32(*n)비트 아키텍쳐에서 매우 효율적으로 동작하도록 구현 가능
+- 거기에 요새는 HW레벨에서 지원함
+
+.image http://www.trscaler.com/technology/ssloveraesni/aes3.png
+.caption 이젠 느려져서 데이터 암호화 못한다는 핑계는 좀....
 
 
+* 블록 암호 운용 모드
 
-* SPN (Substitution-Permutation Network)
+ECB (Electric Code Book)
 
+CBC (Cipher Block Chaining)
 
+CFB (Cipher FeedBack)
 
+CTR (CounTeR)
 
+.link https://goo.gl/wdySAf
 
-
-
-
-
-* 스트림 암호
-
-동기식 스트림 암호
+* 동기식 스트림 암호
 
 - 키 스트림이 암호화할 데이터와 독립적으로 생성
 - 키 스트림을 미리 생성해 놓을 수 있음
@@ -246,8 +305,6 @@ Rijndeal 알고리즘 당첨
 - 암복호화 과정 중에 암호화할 데이터(평문)가 직접적으로 변조된 다음 키가 적용되느냐 아니냐
 
 
-
-
 * 동기식 스트림 암호
 RC4
 
@@ -260,16 +317,12 @@ RC4
 	3. 끝ㅋ
 
 
-
-
 * RC4 키 스케줄링
 
 - 입력된 키(IV)를 이용해 256바이트 배열을 셔플하여 난수 스트림 생성
 - 난수 스트림을 이용해 필요한 만큼의 키 값을 연속해서 생성 => 키 스트림
 
 .image http://flylib.com/books/3/190/1/html/2/images/06fig09.jpg _ 500
-
-
 
 
 * 자기 동기식 스트림 암호
@@ -281,39 +334,227 @@ CFB 모드
 
 
 
+* 권고 암호 알고리즘
 
-* 내용
+.image http://127.0.0.1:3999/public/resources/recommand.png _ 600
 
+* 결정적 문제
 
-SPN
-AES
-블록 암호 모드
-블록 암호 패딩
+이걸로 안전성은 차고 넘치는데 뭐가 문제?
 
+- 대칭키는 키가 키임... 지켜야할 키 개수가 너무 많아짐
 
+.image http://upload2.inven.co.kr/upload/2017/03/15/bbs/i13149538099.jpg _ 200
 
+- 키 교환/분배를 어떻게 할건지
 
-결정적 문제 = 키 교환/분배
-비대칭키 암호
-디피헬만과 RSA
-왜? 어째서 안전한가?
-P = NP ?
+.image http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=64222e0e664c0f0e50562e39425ee002&name=00001jhl.jpg _ 300
+
+* 디피와 헬만
+
+키를 꼭 감춰야만 하는가?
+.image https://static01.nyt.com/images/2016/03/02/business/02turing2/02turing2-facebookJumbo.jpg _ 300
+.caption '야 내가 어제 풀어보니까 이산대수 문제가 겁나 어렵던데...'
+
+동일 값을 계산해내기 위한 비공개 값과 공개 값에 대한 개념 제시 (New directions in cryptography, 1976)
+
+- Diffie-Hellman key exchange protocol 설계
+- 암호화/복호화가 아님
+
+* Diffie-Hellman key exchange protocol
+.image http://blog.trendmicro.com/trendlabs-security-intelligence/files/2015/09/anglerek_dh_01.jpg
+
+* Diffie-Hellman key exchange protocol
+.image http://blog.trendmicro.com/trendlabs-security-intelligence/files/2015/09/anglerek_dh_02b.jpg
+
+* 2년 후...
+
+.image https://s-media-cache-ak0.pinimg.com/736x/74/02/13/740213d64d1c67b963c796b43bb42c63--inventors-ron.jpg
+.caption 기분탓인지 왠지 멋있어 보임...
+
+DH의 한계점을 극복을 위한, 실용적으로 사용할 수 있는 암호기법 제시
+
+* RSA 알고리즘
+
+.image http://flylib.com/books/3/190/1/html/2/images/09fig05.jpg
+
+* 왜? 어째서 안전한가?
+
+P = NP
 소인수 분해 문제
-RSA
+
+- RSA
+
 이산 대수 문제
-디피헬만
-타원곡선
-메시지 다이제스
-SSL
-HTTPS
+
+- DH
+- ECC
+
+* 공개키 방식 암호의 단점
+
+느림...ㅠㅠ
+
+.image http://i.imgur.com/PnMr5FB.jpg _ 200
+
+- RSA는 DES대비 100~1000배, AES대비 1000배 이상 느림
+- 이럼 못쓰지...
+
+.image http://upload2.inven.co.kr/upload/2016/02/25/bbs/i12374308517.gif _ 200
+.caption 답정너 ㅋ;
+
+* 하이브리드 암호
+
+대칭키 방식 암호 + 공개키 방식 암호
+
+- 실질적 데이터 암호화는 대칭키 방식의 암호로
+- '대칭키'를 교환/분배할때 공개키 방식의 암호로!
+
+.image https://pbs.twimg.com/media/CAuAk0WUYAAC1Eu.jpg _ 300
+
+대표적 사례
+
+- SSL/TLS
+- 랜섬웨...
+
+* 그럼 또 문제...
+
+공개키의 신뢰성
+
+.image http://cythumb.cyworld.com/810x0/c2down.cyworld.co.kr/download?fid=64222e0e664c0f0e50562e39425ee002&name=00001jhl.jpg _ 300
+
+공개키는 공개되는 것이기 때문에 위/변조의 문제가 있음
+
+.image http://i.imgur.com/PnMr5FB.jpg _ 200
+
+* Root of Trust
+
+.image https://www.sepago.com/files/drupal/migrated_files/users/nicholas/p2f1.png _ 500
+.caption 그래도 우리... 쟤는 믿자...
+
+* PKI (Public Key Infrastructure)
+
+.image http://weekly1.chosun.com/site/data/img_dir/2005/11/03/2005110377001_01.jpg
+
+Q. 그럼 공개키를 이용한 인증은 어떻게?
+
+* 전자서명
+
+전자서명
+
+.image http://cfile22.uf.tistory.com/image/132D25254BFC00366097CC _ 450
+
+인증서
+
+- 공개키 + 이 공개키에 대한 서명값
+
+* 인증서 체이닝
+.image https://www.fir3net.com/images/legacy/PKI_ChainofTrust-Chain.png _ 700
+
+* 관련 표준
+
+X.509
+.link https://en.wikipedia.org/wiki/X.509
+PKCS (Public Key Cryptography Standard)
+.link https://en.wikipedia.org/wiki/PKCS
+
+
+* SSL (Secure Socket Layer)
+OSI 7 Layers
+
+- 소켓은 응용계층 - 전송계층 사이 데이터가 오고가는 논리적 채널
+.image http://nhprice.com/wp-content/uploads/2013/03/1-Tutorial-OSI-7-layer-model.jpg _ 400
+
+- SSL은 이 소켓에 데이터가 통과될 때 자동으로 암/복호화를 수행해주는 프로토콜
+- SSL은 통신 채널에 대한 '기밀성', '무결성', '인증'을 제공
+
+* SSL 스택
+
+TCP
+.image http://qwefgh90.github.io/sphinx/_images/sslstack.jpg _ 500
+
+UDP
+.image https://www.cse.wustl.edu/~jain/cse574-14/ftp/coap/fig9.gif
+
+* SSL에서 실질적인 채널 암호화
+
+대칭키 암호 방식을 이용
+
+그럼 가장 중요한건 뭐?
+
+- 키
+
+.image http://bbs.tunaground.net/dat/situplay/1480157157/images/1480172331%EC%94%A8%EC%9D%B5.jpg _ 200
+.caption 키... 너란 녀석은...
+
+즉, 키 합의에 공개키 암호 방식을 이용
+
+- 하이브리드 암호를 이용한 대표적인 프로토콜
+
+
+* SSL 핸드셰이크
+
+.image http://www.rfwireless-world.com/images/SSL-handshake-protocol.jpg
+
+.link https://goo.gl/bK1GRo
+
+* SSL Cipher Suite
+
+표준 SSL 통신을 위해 여러가지 암호 기술을 세트 형식으로 정의해 둠
+
+.image http://127.0.0.1:3999/public/resources/ciphersuite.png
+
+.link https://www.openssl.org/docs/man1.1.0/apps/ciphers.html
+
+* SSL의 안전성
+
+이제 사용 여부는 논외! 어떻게 쓰는지가 중요함
+
+대표적 타겟인 IoT 장비
+
+- 이제 왠만한 제품은 거의 SSL이 적용되어 있음
+
+.image http://mblogthumb4.phinf.naver.net/20160609_119/dotsla078_14654086714342P6rc_PNG/2.png?type=w800
+.caption 훗. 과연?
+
+* MITM 사례
+
+.image http://127.0.0.1:3999/public/resources/mitm1.png _ 900
+
+* MITM 사례
+
+.image http://127.0.0.1:3999/public/resources/mitm2.png _ 1000
+
+* MITM 사례
+
+.image http://127.0.0.1:3999/public/resources/mitm3.png _ 1000
+
+* MITM 사례
+
+.image http://127.0.0.1:3999/public/resources/mitm4.png _ 1000
+
+* 공격 성공 이유??
+
+구조상 자가서명 인증서를 이용할 것으로 추정
+
+- 인증을 권고대로 수행하지 않음
+- 자가서명 인증서를 이용한 개발 시 비일비재
+
+SSL 핸드셰이크의 인증서 검증 모드
+
+- None : 인증서 검증을 수행하지 않음
+- Optional : 인증서 검증을 수행하지만 실패해도 진행
+- Required : 인증서 검증이 성공해야만 진행
+
+Required 인증 모드였어도 디바이스가 가지고 있는 서버 인증서 교체 가능
+
+- 때문에, 내장되어 있는 CA인증서들은 반드시 무결성 보장이 필요함
+
+* 해시
 
 
 
 
-----------------------------------------
-
-
-해독 이론의 정립 
+* 해독 이론의 정립 
 
 - COA
 - CPA
@@ -321,20 +562,19 @@ HTTPS
 - KPA
 - 원문선택
 
-해독 방법 이론
+* 해독 방법 이론
 
 - brute force
-- pollard's rho algorithm
+- > pollard's rho algorithm
 - Time vs. space
-	mitm
-	time-space trade off
+	> mitm
+	> time-space trade off
 	slide attack
 	multi-table approach
 	distinguished endpoint
-- rainbow table
-- birthday paradox
-- slide attack
-- linear cryptanalysis
-- differential cryptanalysis
+- > rainbow table
+- > birthday paradox
+- > linear cryptanalysis
+- > differential cryptanalysis
 
 
